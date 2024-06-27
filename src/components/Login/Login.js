@@ -37,6 +37,7 @@ const Login = () => {
             setSnackbarMessage(response.data);
             setSnackbarColor('success');
             sessionStorage.setItem('loginState','ok');
+            sessionStorage.setItem('username',username);
             navigate('/');
         }).catch(err => {
             setOpenSnackbar(true);
@@ -96,12 +97,12 @@ const Login = () => {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2">
+                                <Link href="/forgotpassword" variant="body2">
                                     Quên mật khẩu?
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/register" variant="body2">
                                     {"Chưa có tài khoản? Đăng ký ngay"}
                                 </Link>
                             </Grid>

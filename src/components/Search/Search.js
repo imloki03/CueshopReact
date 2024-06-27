@@ -2,13 +2,14 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import ProductCard from "../ProductCard";
 import Nav from "../Nav";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
-const HomePage = () =>{
+const Search = () =>{
+    const {query} = useParams();
     const [productList, setProductList] = useState();
-
+    console.log("search page")
     useEffect(()=>{
-        axios.get('http://localhost:8080/product/get_all_cue')
+        axios.get('http://localhost:8080/product/search/'+query)
             .then(response => {
                 setProductList(response.data)
             })
@@ -33,4 +34,4 @@ const HomePage = () =>{
         </div>
     )
 }
-export default HomePage;
+export default Search;
