@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Button, Grid, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import Nav from "../Nav";
 
 const Checkout = () => {
@@ -17,7 +17,7 @@ const Checkout = () => {
             navigate("/login");}
         const fetchUserInfo = async () => {
             try {
-                const response = await axios.post('http://localhost:8080/user/get_user_info', {
+                const response = await api.post('http://localhost:8080/user/get_user_info', {
                     username: sessionStorage.getItem('username')
                 });
                 setUserData(response.data);
@@ -42,7 +42,7 @@ const Checkout = () => {
     useEffect(() => {
         const fetchProductDetails = async () => {
             const promises = cart.map(item =>
-                axios.get(`http://localhost:8080/product/get_cue/${item.id}`)
+                api.get(`http://localhost:8080/product/get_cue/${item.id}`)
             );
             const results = await Promise.all(promises);
             const productsData = results.map(result => result.data);
@@ -65,7 +65,7 @@ const Checkout = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:8080/order/add_new', {
+            const response = await api.post('http://localhost:8080/order/add_new', {
                 username: sessionStorage.getItem("username"),
                 address: formData.address,
                 orderList: cart.map(item => ({

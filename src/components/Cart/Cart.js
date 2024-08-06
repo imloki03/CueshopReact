@@ -15,7 +15,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Nav from '../Nav';
-import axios from 'axios';
+import api from '../api';
 
 const Cart = () => {
     const [cart, setCart] = useState([]);
@@ -33,7 +33,7 @@ const Cart = () => {
     useEffect(() => {
         const fetchProductDetails = async () => {
             const promises = cart.map(item =>
-                axios.get(`http://localhost:8080/product/get_cue/${item.id}`)
+                api.get(`http://localhost:8080/product/get_cue/${item.id}`)
             );
             const results = await Promise.all(promises);
             const productsData = results.map(result => result.data);

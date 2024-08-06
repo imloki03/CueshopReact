@@ -32,9 +32,10 @@ const ForgotPassword = () => {
                 setOpenSnackbar(true);
                 setSnackbarMessage(response.data);
                 setSnackbarColor('success');
+                sessionStorage.setItem('token',response.data.token);
                 setOtpSent(true);
                 setShowOtpForm(true);
-                setEmail(response.data);
+                setEmail(response.data.email);
             }).catch(err => {
             setOpenSnackbar(true);
             setSnackbarMessage(err.response.data.message || "Đã xảy ra lỗi không xác định!");

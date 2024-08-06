@@ -50,6 +50,7 @@ const Register = () => {
                     setOpenSnackbar(true);
                     setSnackbarMessage(response.data);
                     setSnackbarColor('success');
+                    sessionStorage.setItem('token',response.data.token);
                     navigate("/login");
                 }).catch(err => {
                     setOpenSnackbar(true);

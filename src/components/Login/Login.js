@@ -38,6 +38,7 @@ const Login = () => {
             setSnackbarColor('success');
             sessionStorage.setItem('loginState','ok');
             sessionStorage.setItem('username',username);
+            sessionStorage.setItem('token',response.data.token);
             navigate('/');
         }).catch(err => {
             setOpenSnackbar(true);

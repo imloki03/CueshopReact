@@ -29,6 +29,7 @@ const ProductDetail = () => {
                 setSpecsArray(response.data.specifications.split('|'));
             })
             .catch(err => {
+                console.log(err)
             });
     }, [id]);
 
